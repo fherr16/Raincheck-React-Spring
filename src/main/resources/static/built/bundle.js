@@ -77,6 +77,11 @@
 				this.UserList();
 			}
 		}, {
+			key: 'deleteUser',
+			value: function deleteUser(person) {
+				console.log('Getting ready to delete: ' + person.id);
+			}
+		}, {
 			key: 'addUser',
 			value: function addUser(first, last) {
 				console.log('A name was submitted: ' + first + " " + last);
@@ -120,7 +125,7 @@
 					'div',
 					null,
 					React.createElement(_UserComponents.CreateUser, { addUser: this.addUser }),
-					React.createElement(_UserComponents.UserList, { persons: this.state.person })
+					React.createElement(_UserComponents.UserList, { persons: this.state.person, deleteUser: this.deleteUser })
 				);
 			}
 		}]);
@@ -220,8 +225,10 @@
 		_createClass(UserList, [{
 			key: 'render',
 			value: function render() {
+				var _this3 = this;
+	
 				var persons = this.props.persons.map(function (person) {
-					return React.createElement(User, { key: person.id, person: person });
+					return React.createElement(User, { key: person.id, person: person, deleteUser: _this3.props.deleteUser });
 				});
 				return React.createElement(
 					'table',
@@ -262,6 +269,11 @@
 		}
 	
 		_createClass(User, [{
+			key: 'delete',
+			value: function _delete(person) {
+				this.props.deleteUser(person);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return React.createElement(
@@ -276,6 +288,15 @@
 						'td',
 						null,
 						this.props.person.lastName
+					),
+					React.createElement(
+						'td',
+						null,
+						React.createElement(
+							'button',
+							{ onClick: this.delete.bind(this, this.props.person) },
+							'Delete'
+						)
 					)
 				);
 			}

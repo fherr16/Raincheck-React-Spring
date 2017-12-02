@@ -43,9 +43,10 @@ export class CreateUser extends React.Component {
 }
 
 export class UserList extends React.Component {
+	
 	render() {
 		var persons = this.props.persons.map(person =>
-			<User key={person.id} person={person}/>
+			<User key={person.id} person={person} deleteUser={this.props.deleteUser}/>
 		);
 		return (
 			<table>
@@ -62,11 +63,17 @@ export class UserList extends React.Component {
 }
 
 export class User extends React.Component {
+	
+	delete(person) {
+		this.props.deleteUser(person);
+	}
+	
 	render() {
 		return (
 			<tr>
 				<td>{this.props.person.firstName}</td>
 				<td>{this.props.person.lastName}</td>
+				<td><button onClick={this.delete.bind(this, this.props.person)}>Delete</button></td>
 			</tr>
 		)
 	}

@@ -14,6 +14,10 @@ class App extends React.Component {
 		this.UserList();
 	}
 	
+	deleteUser(person) {
+		console.log('Getting ready to delete: ' + person.id);
+	}
+	
 	addUser(first, last) {
 	    console.log('A name was submitted: ' + first + " " + last);
 	    
@@ -48,7 +52,7 @@ class App extends React.Component {
 		return (
 			<div> 
 				<CreateUser addUser={this.addUser}/>
-				<UserList persons={this.state.person}/>
+				<UserList persons={this.state.person} deleteUser={this.deleteUser}/>
 			</div>
 		)
 	}
