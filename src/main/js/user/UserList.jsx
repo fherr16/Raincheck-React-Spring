@@ -26,19 +26,7 @@ export class CreateUser extends React.Component {
 	}
 	
 	render() {
-		return(
-				<form onSubmit={this.handleSubmit}>
-		        <label>
-		          FirstName:
-		          <input name ="firstName" type="text" value={this.state.firstName} onChange={this.handleChange} />
-		        </label>
-		        <label>
-		          LastName:
-		          <input name = "lastName" type="text" value={this.state.lastName} onChange={this.handleChange} />
-		        </label>
-		        <input type="submit" value="Submit" />
-		      </form>
-		)
+		
 	}
 }
 
